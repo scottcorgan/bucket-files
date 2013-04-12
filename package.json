@@ -1,0 +1,20 @@
+{
+  "name": "bucket-files",
+  "version": "0.3.0",
+  "description": "Stream all files for a given bucket directory on Amazon S3",
+  "main": "index.js",
+  "dependencies": {
+    "aws2js": "~0.8.3",
+    "async": "~0.2.7",
+    "bucket-list": "~0.3.x"
+  },
+  "repository": "",
+  "keywords": [
+    "aws",
+    "S3",
+    "amazon",
+    "bucket"
+  ],
+  "author": "Scott Corgan",
+  "license": "BSD"
+}
