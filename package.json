@@ -1,6 +1,6 @@
 {
   "name": "bucket-files",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Stream all files for a given bucket directory on Amazon S3",
   "main": "index.js",
   "dependencies": {
