@@ -15,7 +15,7 @@ npm install bucket-files
 var BucketFiles = require('bucket-files');
 var bucketFiles = BucketFiles.connect({
   key: 's3-key',
-  secret: 's3-secretn'
+  secret: 's3-secret'
   bucket: 'name-of-the-s3-bucket'
 });
 
