@@ -1,8 +1,8 @@
 var assert = require('assert');
 var async = require('async');
-var aws2js = require('aws2js');
 var Stream = require('stream');
 var BucketList = require('bucket-list');
+var knox = require('knox');
 
 exports.connect = function (opts) {
   assert.ok(opts, 'AWS S3 options must be defined.');
@@ -16,13 +16,16 @@ exports.connect = function (opts) {
       return null;
     }
     
-    var s3 = aws2js.load("s3", opts.key, opts.secret);
     var bucket = BucketList.connect(opts);
     var stream = new Stream();
     
-    //
-    s3.setBucket(opts.bucket);
     stream.readable = true
+    
+    var client = knox.createClient({
+      key: opts.key,
+      secret: opts.secret,
+      bucket: opts.bucket
+    });
     
     var bucketStream = bucket(path);
     var fileCounter = 0;
@@ -30,7 +33,7 @@ exports.connect = function (opts) {
     bucketStream.on('data', function (file) {
       fileCounter += 1;
       
-      s3.get(file, 'stream', function (err, s3File) {
+      client.get(file).on('response', function (s3File) {
         if (err) {
           stream.emit('error', err);
           stream.emit('end');
@@ -54,4 +57,4 @@ exports.connect = function (opts) {
     
     return stream;
   };
-}
+};

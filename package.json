@@ -1,12 +1,12 @@
 {
   "name": "bucket-files",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Stream all files for a given bucket directory on Amazon S3",
   "main": "index.js",
   "dependencies": {
-    "aws2js": "~0.8.3",
     "async": "~0.2.7",
-    "bucket-list": "~0.3.x"
+    "bucket-list": "~0.3.x",
+    "knox": "~0.8.6"
   },
   "repository": "",
   "keywords": [
