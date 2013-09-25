@@ -16,6 +16,7 @@ exports.connect = function (opts) {
       return null;
     }
     
+    
     var bucket = BucketList.connect(opts);
     var stream = new Stream();
     
@@ -34,12 +35,6 @@ exports.connect = function (opts) {
       fileCounter += 1;
       
       client.get(file).on('response', function (s3File) {
-        if (err) {
-          stream.emit('error', err);
-          stream.emit('end');
-          return;
-        }
-        
         stream.emit('data', {
           path: file.replace(path, ''),
           data: s3File
@@ -52,7 +47,7 @@ exports.connect = function (opts) {
             stream.emit('end');
           }
         });
-      });
+      }).end();
     });
     
     return stream;
